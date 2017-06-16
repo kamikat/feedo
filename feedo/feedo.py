@@ -6,6 +6,7 @@ import sys
 
 from time import sleep
 from formatter import Formatter
+from datetime import datetime
 
 def main():
     stdout, stderr = get_encoding_safe_stdio()
@@ -29,10 +30,16 @@ def main():
             continue
         interval = args.interval if args.interval else float(d.feed.ttl) if hasattr(d.feed, 'ttl') else 60
         newlines = []
-        for item in d.entries:
-            if item.link == last_item_link:
+        for entry in d.entries:
+            if entry.link == last_item_link:
                 break
-            newlines.append(formatter.format(format_string, enclosures=item.enclosures, **item))
+            item = dict(entry)
+            item['enclusures'] = entry.enclosures
+            item['published'] = datetime(*entry.published_parsed[:6]) if hasattr(entry, 'published_parsed') else None
+            item['created'] = datetime(*entry.created_parsed[:6]) if hasattr(entry, 'created_parsed') else None
+            item['updated'] = datetime(*entry.updated_parsed[:6]) if hasattr(entry, 'updated_parsed') else None
+            item['expired'] = datetime(*entry.expired_parsed[:6]) if hasattr(entry, 'expired_parsed') else None
+            newlines.append(formatter.format(format_string, **item))
         if len(d.entries):
             last_item_link = d.entries[0].link
         for line in reversed(newlines):
