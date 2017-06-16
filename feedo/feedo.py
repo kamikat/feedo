@@ -9,8 +9,8 @@ from time import sleep
 def main():
     stdout, stderr = get_encoding_safe_stdio()
 
-    parser = argparse.ArgumentParser(description="Read, format and output a RSS stream.")
-    parser.add_argument('-u', '--uri', action='store', required=True, help="load feed from uri")
+    parser = argparse.ArgumentParser(description="Read, format and output an RSS stream.")
+    parser.add_argument('uri', action='store', help="load feed from uri")
     parser.add_argument('-o', '--format', action='store', required=True, help="python 3.x styled format string (see https://pyformat.info/)")
     parser.add_argument('-f', '--follow', action='store_true', help="follow feed stream updates")
     parser.add_argument('-i', '--interval', action='store', type=float, default=None, help="time between each fetch for updates (in seconds)")
