@@ -5,6 +5,7 @@ import feedparser
 import sys
 
 from time import sleep
+from formatter import Formatter
 
 def main():
     stdout, stderr = get_encoding_safe_stdio()
@@ -17,6 +18,7 @@ def main():
     args = parser.parse_args()
 
     last_item_link = None
+    formatter = Formatter()
     format_string = args.format.decode('utf-8')
 
     while True:
@@ -30,7 +32,7 @@ def main():
         for item in d.entries:
             if item.link == last_item_link:
                 break
-            newlines.append(format_string.format(enclosures=item.enclosures, **item))
+            newlines.append(formatter.format(format_string, enclosures=item.enclosures, **item))
         if len(d.entries):
             last_item_link = d.entries[0].link
         for line in reversed(newlines):
