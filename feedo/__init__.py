@@ -1,0 +1,1 @@
+from feedo import main

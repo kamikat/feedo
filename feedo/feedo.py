@@ -47,5 +47,3 @@ def get_encoding_safe_stdio(encoding='utf-8'):
     stderr = sys.stderr if sys.stderr.encoding else codecs.getwriter(encoding)(sys.stderr)
     return stdout, stderr
 
-if __name__ == '__main__':
-    main()
