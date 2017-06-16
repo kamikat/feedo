@@ -14,7 +14,7 @@ feedo http://lorem-rss.herokuapp.com/feed --format '{title}'
 
 Add `--follow` option to watch updates on feed.
 
-Supported feed item properties:
+Supported format arguments:
 
 - `{id}`
 - `{link}`
@@ -22,9 +22,6 @@ Supported feed item properties:
 - `{author}`
 - `{content}`
 - `{enclosures[i].href}`
-
-Date properties:
-
 - `{created_parsed:%Y-%m-%d %H:%M}`
 - `{updated_parsed:%Y-%m-%d %H:%M}`
 - `{published_parsed:%Y-%m-%d %H:%M}`
@@ -42,7 +39,9 @@ feedo "http://bt.byr.cn/torrentrss.php?rows=10&linktype=dl&passkey=XXXXXXXXXX" \
   --follow | sh
 ```
 
-This snippet watches an RSS stream of a RSS subscription and add new tasks to aria2 using [abt](https://github.com/kamikat/abt)
+This snippet watches an RSS stream of a RSS subscription and add new tasks to aria2 using [abt](https://github.com/kamikat/abt).
+
+**WARNING** take a trust-worthy source before pipe anything generated into a shell!!!
 
 ## License
 
