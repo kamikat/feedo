@@ -31,13 +31,22 @@ Supported format arguments:
 
 (See [feedparser Documentation](https://pythonhosted.org/feedparser/search.html?q=entry) for more available format arguments)
 
+### Value conversion
+
+feedo extends [value conversion](https://pyformat.info/#conversion_flags) syntax and support following extra conversion flags:
+
+- `!x` converts value to a SHA-1 checksum string
+- `!X` converts value to a SHA-256 checksum string
+- `!f` escapes value to make it safe for a file name
+- `!g` slugifys the value with [python-slugify](https://github.com/un33k/python-slugify)
+
 ## Example
 
 feedo can be used in implementing some automatic job:
 
 ```sh
 feedo "http://bt.byr.cn/torrentrss.php?rows=10&linktype=dl&passkey=XXXXXXXXXX" \
-  --format '[ ! -f /media/.abt/{id} ] && abt add --uri "{enclosures[0].href}" --dir="/media/Downloads/{title}" && touch /media/.abt/{id}' \
+  --format '[ ! -f /media/.abt/{id} ] && abt add --uri "{enclosures[0].href}" --dir="/media/Downloads/{title!f}" && touch /media/.abt/{id}' \
   --follow | sh
 ```
 
