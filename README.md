@@ -24,12 +24,22 @@ Supported format arguments:
 - `{author}`
 - `{content}`
 - `{enclosures[i].href}`
-- `{created_parsed:%Y-%m-%d %H:%M}`
-- `{updated_parsed:%Y-%m-%d %H:%M}`
-- `{published_parsed:%Y-%m-%d %H:%M}`
-- `{expired_parsed:%Y-%m-%d %H:%M}`
+- `{enclosures[i].length}`
+- `{enclosures[i].type}`
+- `{published}`
+- `{created}`
+- `{updated}`
+- `{expired}`
 
 (See [feedparser Documentation](https://pythonhosted.org/feedparser/search.html?q=entry) for more available format arguments)
+
+Values can be styled in python 3 [string formatting](https://docs.python.org/3/library/string.html#string-formatting) syntax. For example, to format `published` value in RFC 3339:
+
+```sh
+feedo http://lorem-rss.herokuapp.com/feed --format '{title:.11} ({link}) -- {published:%Y-%m-%dT%H:%MZ%z}'
+```
+
+(See [strftime (3)](https://docs.python.org/2/library/datetime.html#strftime-and-strptime-behavior) for date format arguments)
 
 ### Value conversion
 
@@ -39,6 +49,12 @@ feedo extends [value conversion](https://pyformat.info/#conversion_flags) syntax
 - `!X` converts value to a SHA-256 checksum string
 - `!f` escapes value to make it safe for a file name
 - `!g` slugifys the value with [python-slugify](https://github.com/un33k/python-slugify)
+
+For example, to get the sha1 hash of a `link` value and get first 12 characters:
+
+```sh
+feedo http://lorem-rss.herokuapp.com/feed --format '{link} => {link!x} => {link!x:.12}'
+```
 
 ## Example
 
