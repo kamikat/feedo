@@ -1,5 +1,7 @@
 # feedo
 
+[![PyPI](https://img.shields.io/pypi/v/feedo.svg)](https://pypi.python.org/pypi/feedo/)
+
 Read, format and output an RSS stream.
 
 feedo is inspired by [rsstail](https://github.com/flok99/rsstail) and it's python copy [rsstail.py](https://github.com/gvalkov/rsstail.py)
