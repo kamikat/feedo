@@ -34,7 +34,7 @@ def main():
             if entry.link == last_item_link:
                 break
             item = dict(entry)
-            item['enclusures'] = entry.enclosures
+            item['enclosures'] = entry.enclosures
             item['published'] = datetime(*entry.published_parsed[:6]) if hasattr(entry, 'published_parsed') else None
             item['created'] = datetime(*entry.created_parsed[:6]) if hasattr(entry, 'created_parsed') else None
             item['updated'] = datetime(*entry.updated_parsed[:6]) if hasattr(entry, 'updated_parsed') else None
