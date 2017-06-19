@@ -3,7 +3,7 @@
 from setuptools import setup
 
 setup(name="feedo",
-      version="1.1.0",
+      version="1.1.1",
       description="Read, format and output an RSS stream.",
       url='https://github.com/kamikat/feedo',
       author="Kamikat",
