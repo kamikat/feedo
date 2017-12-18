@@ -1,6 +1,6 @@
 # feedo
 
-[![PyPI](https://img.shields.io/pypi/v/feedo.svg)](https://pypi.python.org/pypi/feedo/)
+[![PyPI version](https://badge.fury.io/py/feedo.svg)](https://badge.fury.io/py/feedo)
 
 Read, format and output an RSS stream.
 
